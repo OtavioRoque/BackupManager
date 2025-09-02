@@ -9,7 +9,7 @@ O objetivo é simplificar o processo de fazer shrink database/files, fazer backu
 - SQL Server.
 
 ## 📁 Pastas
-- **Views:** Janelas (Windows) e Controles (UserControls) da interface gráfica.
-- **Utils:** Classes auxiliares com métodos utilitários reutilizáveis.
+- **Views:** Janelas da interface gráfica.
+- **Utils:** Classes auxiliares com métodos utiitários.
 - **Resources:** Ícones, imagens e outros recursos.
 - **Properties:** Informações do AssemblyInfo.

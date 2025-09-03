@@ -4,24 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackupManager"
+        xmlns:uc="clr-namespace:BackupManager.Views.UserControls"
         mc:Ignorable="d"
         Title="Backup Manager 💾" Height="400" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBox
-                x:Name="chkSelectAllDatabases"
+            <uc:ClearableTextBox
+                x:Name="txtDatabaseFilter"
                 Margin="10"
-                VerticalAlignment="Center"/>
+                Placeholder="Filtrar bancos..."/>
 
             <DataGrid
                 x:Name="dgDatabases"
@@ -40,8 +41,8 @@
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -53,13 +54,13 @@
 
                 <CheckBox
                     x:Name="chkShrink"
-                    Content="Shrink database"
+                    Content="Shrink"
                     Grid.Row="0"
                     VerticalAlignment="Center"
                     IsChecked="True"/>
                 <CheckBox
-                    x:Name="chkZip"
-                    Content="Compactar backup"
+                    x:Name="chkCompact"
+                    Content="Compact"
                     Grid.Row="1"
                     VerticalAlignment="Center"
                     IsChecked="True"/>
@@ -72,7 +73,7 @@
                 Height="38"
                 Width="80"
                 VerticalAlignment="Bottom"
-                Margin="0 0 0 10"/>
+                Margin="10"/>
         </Grid>
     </Grid>
 </Window>

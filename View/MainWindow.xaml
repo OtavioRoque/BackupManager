@@ -5,23 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackupManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="400">
+        Title="Backup Manager 💾" Height="400" Width="300">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.3*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="6*"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <CheckBox
+            <TextBox
                 x:Name="chkSelectAllDatabases"
                 Margin="10"
-                Content="Selecionar todos"
                 VerticalAlignment="Center"/>
 
             <DataGrid
@@ -39,7 +38,7 @@
             </DataGrid>
         </Grid>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
@@ -71,7 +70,9 @@
                 Content="Backup"
                 Grid.Row="2"
                 Height="38"
-                Width="80"/>
+                Width="80"
+                VerticalAlignment="Bottom"
+                Margin="0 0 0 10"/>
         </Grid>
     </Grid>
 </Window>

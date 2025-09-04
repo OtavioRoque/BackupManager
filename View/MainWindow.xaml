@@ -7,12 +7,14 @@
         xmlns:uc="clr-namespace:BackupManager.Views.UserControls"
         mc:Ignorable="d"
         Title="Backup Manager 💾" Height="400" Width="300" FontSize="14" WindowStartupLocation="CenterScreen">
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!-- Parte superior -->
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -23,8 +25,8 @@
 
             <DataGrid
                 x:Name="dgDatabases"
-                Grid.Row="2"
-                Margin=" 0 10"
+                Grid.Row="1"
+                Margin="0 10"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
                 SelectionMode="Single">
@@ -36,6 +38,7 @@
             </DataGrid>
         </Grid>
 
+        <!-- Parte inferior -->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -84,7 +87,7 @@
                     Width="80"
                     HorizontalAlignment="Right"
                     Margin="20 0 0 0"/>
-            </Grid>             
+            </Grid>
         </Grid>
     </Grid>
 </Window>

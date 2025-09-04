@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:BackupManager"
         xmlns:uc="clr-namespace:BackupManager.Views.UserControls"
         mc:Ignorable="d"
-        Title="Backup Manager 💾" Height="400" Width="300">
-    <Grid>
+        Title="Backup Manager 💾" Height="400" Width="300" FontSize="14" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
@@ -19,17 +19,14 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <uc:ClearableTextBox
-                x:Name="txtDatabaseFilter"
-                Margin="10"
-                Placeholder="Filtrar bancos..."/>
+            <uc:ClearableTextBox x:Name="txtDatabaseFilter" Placeholder="Filtrar bancos..."/>
 
             <DataGrid
                 x:Name="dgDatabases"
                 Grid.Row="2"
+                Margin=" 0 10"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
-                Margin="10 0 10 10"
                 SelectionMode="Single">
 
                 <DataGrid.Columns>
@@ -41,39 +38,53 @@
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" Margin="30 0 0 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <CheckBox
-                    x:Name="chkShrink"
-                    Content="Shrink"
-                    Grid.Row="0"
-                    VerticalAlignment="Center"
-                    IsChecked="True"/>
-                <CheckBox
-                    x:Name="chkCompact"
-                    Content="Compact"
-                    Grid.Row="1"
-                    VerticalAlignment="Center"
-                    IsChecked="True"/>
-            </Grid>
-
             <Button
-                x:Name="btnBackup"
-                Content="Backup"
-                Grid.Row="2"
-                Height="38"
-                Width="80"
-                VerticalAlignment="Bottom"
-                Margin="10"/>
+                x:Name="btnSelectFolder"
+                Content="Selecionar pasta destino"
+                Background="Transparent"
+                BorderThickness="0"
+                Foreground="Tomato"
+                FontWeight="Bold"
+                FontSize="14"/>
+
+            <Grid Grid.Row="1" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+
+                    <CheckBox
+                        x:Name="chkShrink"
+                        Margin="0 0 0 10"
+                        Content="Shrink"
+                        IsChecked="True"/>
+
+                    <CheckBox
+                        x:Name="chkCompact"
+                        Content="Compact"
+                        IsChecked="True"/>
+                </StackPanel>
+
+                <Button
+                    x:Name="btnBackup"
+                    Content="Backup"
+                    Grid.Column="2"
+                    Height="38"
+                    Width="80"
+                    HorizontalAlignment="Right"
+                    Margin="20 0 0 0"/>
+            </Grid>             
         </Grid>
     </Grid>
 </Window>

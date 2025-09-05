@@ -83,6 +83,11 @@ namespace BackupManager.View
             dgDatabases.SelectedItem = null;
         }
 
+        private void txtDatabaseFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
         #endregion
     }
 }

@@ -22,7 +22,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <uc:ClearableTextBox x:Name="txtDatabaseFilter" Placeholder="Filtrar bancos..."/>
+            <uc:ClearableTextBox
+                x:Name="txtDatabaseFilter"
+                Placeholder="Filtrar bancos..."
+                TextChanged="txtDatabaseFilter_TextChanged"/>
 
             <DataGrid
                 x:Name="dgDatabases"

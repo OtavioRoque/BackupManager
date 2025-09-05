@@ -27,12 +27,16 @@ namespace BackupManager.Views.UserControls
             txtInput.Focus();
         }
 
+        public event TextChangedEventHandler TextChanged;
+
         private void txtInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtInput.Text))
                 tbPlaceholder.Visibility = Visibility.Visible;
             else
                 tbPlaceholder.Visibility = Visibility.Hidden;
+
+            TextChanged?.Invoke(this, e);
         }
     }
 }

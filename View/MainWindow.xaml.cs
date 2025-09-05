@@ -1,24 +1,40 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using System.Collections.ObjectModel;
+using BackupManager.Model;
+using System.Data;
 
 namespace BackupManager.View
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<DatabaseModel> Databases { get; set; } = new ObservableCollection<DatabaseModel>();
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+            LoadDatabases();
+        }
+
+        private void LoadDatabases()
+        {
+            string sql = "SELECT name FROM sys.databases";
+            var dtDatabases = DB.FillDataTable(sql);
+
+            foreach (DataRow dr in dtDatabases.Rows)
+            {
+                string databaseName = dr["name"].ToString() ?? string.Empty;
+                Databases.Add(new DatabaseModel(databaseName));
+            }
+        }
+
+        private void dgDatabases_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (dgDatabases.SelectedItem is not DatabaseModel database)
+                return;
+
+            database.IsChecked = !database.IsChecked;
+            dgDatabases.SelectedItem = null;
         }
     }
 }

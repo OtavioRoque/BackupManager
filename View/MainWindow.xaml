@@ -28,12 +28,21 @@
                 Grid.Row="1"
                 Margin="0 10"
                 AutoGenerateColumns="False"
+                SelectionMode="Single"
                 IsReadOnly="True"
-                SelectionMode="Single">
+                ItemsSource="{Binding Databases}"
+                MouseLeftButtonUp="dgDatabases_MouseLeftButtonUp">
 
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Header="" Width="1*"/>
-                    <DataGridTextColumn Header="Banco" Width="5*"/>
+                    <DataGridCheckBoxColumn
+                        Header=""
+                        Width="1*"
+                        Binding="{Binding IsChecked}"/>
+
+                    <DataGridTextColumn
+                        Header="Banco"
+                        Width="5*"
+                        Binding="{Binding Name}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

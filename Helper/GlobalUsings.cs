@@ -1,0 +1,1 @@
+﻿global using DB = SqlHelper.Utils.DatabaseAccess;

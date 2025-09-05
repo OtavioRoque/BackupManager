@@ -56,14 +56,14 @@
             </Grid.RowDefinitions>
 
             <Button
-                x:Name="btnSelectFolder"
+                x:Name="btnSelectDestinationFolder"
                 Content="Selecionar pasta destino"
                 Background="Transparent"
                 BorderThickness="0"
                 Foreground="Tomato"
                 FontWeight="Bold"
                 FontSize="14"
-                Click="btnSelectFolder_Click"/>
+                Click="btnSelectDestinationFolder_Click"/>
 
             <Grid Grid.Row="1" Margin="0 10 0 0">
                 <Grid.ColumnDefinitions>

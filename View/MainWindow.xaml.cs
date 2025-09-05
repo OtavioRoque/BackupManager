@@ -35,7 +35,7 @@ namespace BackupManager.View
             dgDatabases.SelectedItem = null;
         }
 
-        private void btnSelectFolder_Click(object sender, RoutedEventArgs e)
+        private void btnSelectDestinationFolder_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFolderDialog()
             {

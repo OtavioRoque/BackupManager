@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackupManager"
-        xmlns:uc="clr-namespace:BackupManager.Views.UserControls"
         mc:Ignorable="d"
         Title="Backup Manager 💾" Height="400" Width="300" FontSize="14" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
@@ -22,9 +21,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <uc:ClearableTextBox
+            <TextBox 
                 x:Name="txtDatabaseFilter"
-                Placeholder="Filtrar bancos..."
+                Height="28"
                 TextChanged="txtDatabaseFilter_TextChanged"/>
 
             <DataGrid

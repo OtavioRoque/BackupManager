@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="View\UserControls\" />
   </ItemGroup>
 
   <ItemGroup>

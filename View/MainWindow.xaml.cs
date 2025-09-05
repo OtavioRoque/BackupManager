@@ -50,6 +50,11 @@ namespace BackupManager.View
             RefreshBackupButtonState();
         }
 
+        private void txtDatabaseFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
         #endregion
 
         #region Private methods
@@ -81,11 +86,6 @@ namespace BackupManager.View
                 selectedDatabases.Remove(database);
 
             dgDatabases.SelectedItem = null;
-        }
-
-        private void txtDatabaseFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
         }
 
         #endregion

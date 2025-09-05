@@ -96,12 +96,14 @@
                         x:Name="chkShrink"
                         Margin="0 0 0 10"
                         Content="Shrink"
-                        IsChecked="True"/>
+                        IsChecked="True"
+                        VerticalContentAlignment="Center"/>
 
                     <CheckBox
                         x:Name="chkCompact"
                         Content="Compact"
-                        IsChecked="True"/>
+                        IsChecked="True"
+                        VerticalContentAlignment="Center"/>
                 </StackPanel>
 
                 <Button

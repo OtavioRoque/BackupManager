@@ -21,9 +21,20 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <TextBlock
+                x:Name="tbPlaceholder"
+                Text="Filtrar databases..."
+                VerticalAlignment="Center"
+                Padding="5"
+                Foreground="Gray"
+                Opacity="0.5"/>
+
             <TextBox 
                 x:Name="txtDatabaseFilter"
+                Padding="2"
                 Height="28"
+                Background="Transparent"
+                VerticalContentAlignment="Center"
                 TextChanged="txtDatabaseFilter_TextChanged"/>
 
             <DataGrid
@@ -34,6 +45,7 @@
                 SelectionMode="Single"
                 IsReadOnly="True"
                 ItemsSource="{Binding Databases}"
+                HeadersVisibility="Column"
                 MouseLeftButtonUp="dgDatabases_MouseLeftButtonUp">
 
                 <DataGrid.Resources>

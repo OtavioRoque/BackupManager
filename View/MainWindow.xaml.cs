@@ -52,7 +52,10 @@ namespace BackupManager.View
 
         private void txtDatabaseFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtDatabaseFilter.Text))
+                tbPlaceholder.Visibility = Visibility.Hidden;
+            else
+                tbPlaceholder.Visibility = Visibility.Visible;
         }
 
         #endregion
@@ -73,7 +76,7 @@ namespace BackupManager.View
 
         private void RefreshBackupButtonState()
         {
-            btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(destinationFolder);
+            btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(destinationFolder) && selectedDatabases.Count > 0;
         }
 
         private void SelectDatabase(DatabaseModel database)
@@ -86,6 +89,7 @@ namespace BackupManager.View
                 selectedDatabases.Remove(database);
 
             dgDatabases.SelectedItem = null;
+            RefreshBackupButtonState();
         }
 
         #endregion

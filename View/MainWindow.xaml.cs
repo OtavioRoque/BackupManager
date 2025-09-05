@@ -1,14 +1,15 @@
-﻿using System.Windows;
-using System.Collections.ObjectModel;
-using BackupManager.Model;
-using System.Data;
+﻿using BackupManager.Model;
 using Microsoft.Win32;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.Windows;
 
 namespace BackupManager.View
 {
     public partial class MainWindow : Window
     {
         private string? destinationFolder;
+        private List<DatabaseModel> selectedDatabases = new List<DatabaseModel>();
 
         public ObservableCollection<DatabaseModel> Databases { get; set; } = new ObservableCollection<DatabaseModel>();
 
@@ -31,8 +32,7 @@ namespace BackupManager.View
             if (dgDatabases.SelectedItem is not DatabaseModel database)
                 return;
 
-            database.IsChecked = !database.IsChecked;
-            dgDatabases.SelectedItem = null;
+            SelectDatabase(database);
         }
 
         private void btnSelectDestinationFolder_Click(object sender, RoutedEventArgs e)
@@ -69,6 +69,18 @@ namespace BackupManager.View
         private void RefreshBackupButtonState()
         {
             btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(destinationFolder);
+        }
+
+        private void SelectDatabase(DatabaseModel database)
+        {
+            database.IsChecked = !database.IsChecked;
+
+            if (database.IsChecked)
+                selectedDatabases.Add(database);
+            else
+                selectedDatabases.Remove(database);
+
+            dgDatabases.SelectedItem = null;
         }
 
         #endregion

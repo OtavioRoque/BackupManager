@@ -34,10 +34,21 @@
                 ItemsSource="{Binding Databases}"
                 MouseLeftButtonUp="dgDatabases_MouseLeftButtonUp">
 
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked}" Value="True">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn
                         Header=""
                         Width="1*"
+                        Visibility="Hidden"
                         Binding="{Binding IsChecked}"/>
 
                     <DataGridTextColumn

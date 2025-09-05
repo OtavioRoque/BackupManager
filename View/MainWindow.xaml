@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:BackupManager"
         xmlns:uc="clr-namespace:BackupManager.Views.UserControls"
         mc:Ignorable="d"
-        Title="Backup Manager 💾" Height="400" Width="300" FontSize="14" WindowStartupLocation="CenterScreen">
+        Title="Backup Manager 💾" Height="400" Width="300" FontSize="14" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -61,7 +62,8 @@
                 BorderThickness="0"
                 Foreground="Tomato"
                 FontWeight="Bold"
-                FontSize="14"/>
+                FontSize="14"
+                Click="btnSelectFolder_Click"/>
 
             <Grid Grid.Row="1" Margin="0 10 0 0">
                 <Grid.ColumnDefinitions>

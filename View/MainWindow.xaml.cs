@@ -2,19 +2,57 @@
 using System.Collections.ObjectModel;
 using BackupManager.Model;
 using System.Data;
+using Microsoft.Win32;
 
 namespace BackupManager.View
 {
     public partial class MainWindow : Window
     {
+        private string? destinationFolder;
+
         public ObservableCollection<DatabaseModel> Databases { get; set; } = new ObservableCollection<DatabaseModel>();
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
-            LoadDatabases();
         }
+
+        #region Events
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadDatabases();
+            RefreshBackupButtonState();
+        }
+
+        private void dgDatabases_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (dgDatabases.SelectedItem is not DatabaseModel database)
+                return;
+
+            database.IsChecked = !database.IsChecked;
+            dgDatabases.SelectedItem = null;
+        }
+
+        private void btnSelectFolder_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFolderDialog()
+            {
+                Title = "Selecione uma pasta para o backup.",
+                Multiselect = false
+            };
+
+            if (dialog.ShowDialog() == false)
+                return;
+
+            destinationFolder = dialog.FolderName;
+            RefreshBackupButtonState();
+        }
+
+        #endregion
+
+        #region Private methods
 
         private void LoadDatabases()
         {
@@ -28,13 +66,11 @@ namespace BackupManager.View
             }
         }
 
-        private void dgDatabases_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void RefreshBackupButtonState()
         {
-            if (dgDatabases.SelectedItem is not DatabaseModel database)
-                return;
-
-            database.IsChecked = !database.IsChecked;
-            dgDatabases.SelectedItem = null;
+            btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(destinationFolder);
         }
+
+        #endregion
     }
 }

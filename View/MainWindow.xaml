@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackupManager"
         mc:Ignorable="d"
-        Title="Backup Manager 💾" Height="400" Width="300" FontSize="14" WindowStartupLocation="CenterScreen"
+        Title="Backup Manager 💾" Height="436" Width="300" FontSize="14" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
 
     <Grid Margin="10">

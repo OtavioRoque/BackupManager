@@ -12,4 +12,4 @@ O objetivo é simplificar o processo de fazer shrink database/files, fazer backu
 - **Properties:** Informações do AssemblyInfo.
 - **Config** Definições de connection string.
 - **Model** Entidades do programa.
-- **Views:** Janelas da interface gráfica.
+- **View:** Janelas da interface gráfica.

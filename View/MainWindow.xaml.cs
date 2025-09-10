@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace BackupManager.View
 {
@@ -51,11 +52,11 @@ namespace BackupManager.View
                 Multiselect = false
             };
 
-            if (dialog.ShowDialog() == false)
-                return;
-
+            dialog.ShowDialog();
             destinationFolder = dialog.FolderName;
+
             RefreshBackupButtonState();
+            UpdateSelectButtonStyle();
         }
 
         private void txtDatabaseFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -87,6 +88,20 @@ namespace BackupManager.View
         private void RefreshBackupButtonState()
         {
             btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(destinationFolder) && selectedDatabases.Count > 0;
+        }
+
+        private void UpdateSelectButtonStyle()
+        {
+            if (string.IsNullOrWhiteSpace(destinationFolder))
+            {
+                btnSelectDestinationFolder.Content = "Selecionar pasta de destino";
+                btnSelectDestinationFolder.Foreground = Brushes.Tomato;
+            }
+            else
+            {
+                btnSelectDestinationFolder.Content = destinationFolder;
+                btnSelectDestinationFolder.Foreground = Brushes.Green;
+            }
         }
 
         private void SelectDatabase(DatabaseModel database)

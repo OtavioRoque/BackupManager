@@ -56,7 +56,7 @@ namespace BackupManager.View
             destinationFolder = dialog.FolderName;
 
             RefreshBackupButtonState();
-            UpdateSelectButtonStyle();
+            UpdateSelectDestinationButtonStyle();
         }
 
         private void txtDatabaseFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -90,7 +90,7 @@ namespace BackupManager.View
             btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(destinationFolder) && selectedDatabases.Count > 0;
         }
 
-        private void UpdateSelectButtonStyle()
+        private void UpdateSelectDestinationButtonStyle()
         {
             if (string.IsNullOrWhiteSpace(destinationFolder))
             {

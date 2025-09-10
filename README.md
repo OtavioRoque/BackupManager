@@ -11,5 +11,6 @@ O objetivo é simplificar o processo de fazer shrink database/files, fazer backu
 ## 📁 Pastas
 - **Properties:** Informações do AssemblyInfo.
 - **Config** Definições de connection string.
+- **Helper** Classes estáticas com métodos auxiliares.
 - **Model** Entidades do programa.
 - **View:** Janelas da interface gráfica.

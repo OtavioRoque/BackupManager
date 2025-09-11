@@ -124,7 +124,8 @@
                     Height="38"
                     Width="80"
                     HorizontalAlignment="Right"
-                    Margin="20 0 0 0"/>
+                    Margin="20 0 0 0"
+                    Click="btnBackup_Click"/>
             </Grid>
         </Grid>
     </Grid>

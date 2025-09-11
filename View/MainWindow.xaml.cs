@@ -71,6 +71,23 @@ namespace BackupManager.View
             databasesView?.Refresh();
         }
 
+        private void btnBackup_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var database in selectedDatabases)
+            {
+                if (database == null)
+                    continue;
+
+                if (chkShrink.IsChecked == true)
+                    ShrinkDatabase(database);
+
+                BackupDatabase(database);
+
+                if (chkCompact.IsChecked == true)
+                    CompactDatabase(database);
+            }
+        }
+
         #endregion
 
         #region Private methods

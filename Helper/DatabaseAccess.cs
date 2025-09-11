@@ -99,6 +99,8 @@ namespace SqlHelper.Utils
                 using var conn = new SqlConnection(_connectionString);
                 using var cmd = new SqlCommand(sql, conn);
 
+                cmd.CommandTimeout = 0;
+
                 conn.Open();
                 return cmd.ExecuteNonQuery();
             }

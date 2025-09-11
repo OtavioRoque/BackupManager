@@ -3,6 +3,8 @@ using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
+using System.IO.Compression;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -126,6 +128,47 @@ namespace BackupManager.View
                 return true;
 
             return database.Name.Contains(txtDatabaseFilter.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void ShrinkDatabase(DatabaseModel database)
+        {
+            string sql = $"DBCC SHRINKDATABASE ({database.Name})";
+            DB.ExecuteNonQuery(sql);
+        }
+
+        private void BackupDatabase(DatabaseModel database)
+        {
+            string sql = @$"
+                BACKUP DATABASE [{database.Name}] 
+                TO DISK = N'{destinationFolder}\{database.Name}.bak' 
+                WITH FORMAT, INIT, NAME = N'Backup de {database.Name}'";
+
+            DB.ExecuteNonQuery(sql);
+        }
+
+        private void CompactDatabase(DatabaseModel database)
+        {
+            string backupFile = @$"{destinationFolder}\{database.Name}.bak";
+            string zipFile = @$"{destinationFolder}\{database.Name}.zip";
+
+            using (var zipToOpen = new FileStream(zipFile, FileMode.Create))
+            {
+                using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
+                {
+                    archive.CreateEntryFromFile(backupFile, Path.GetFileName(backupFile), CompressionLevel.Optimal);
+                }
+            }
+
+            DeleteBackupFile(backupFile);
+        }
+
+        /// <summary>
+        /// Apaga o .bak após a compactação.
+        /// </summary>
+        private void DeleteBackupFile(string backupFile)
+        {
+            if (File.Exists(backupFile))
+                File.Delete(backupFile);
         }
 
         #endregion

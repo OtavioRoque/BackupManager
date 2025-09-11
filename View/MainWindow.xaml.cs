@@ -1,4 +1,5 @@
-﻿using BackupManager.Model;
+﻿using BackupManager.Helper;
+using BackupManager.Model;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -75,16 +76,9 @@ namespace BackupManager.View
         {
             foreach (var database in selectedDatabases)
             {
-                if (database == null)
-                    continue;
+                var dbService = new DatabaseService(destinationFolder!, chkShrink.IsChecked == true, chkCompact.IsChecked == true);
 
-                if (chkShrink.IsChecked == true)
-                    ShrinkDatabase(database);
-
-                BackupDatabase(database);
-
-                if (chkCompact.IsChecked == true)
-                    CompactDatabase(database);
+                dbService.ProcessDatabaseBackup(database);
             }
         }
 
@@ -145,47 +139,6 @@ namespace BackupManager.View
                 return true;
 
             return database.Name.Contains(txtDatabaseFilter.Text, StringComparison.OrdinalIgnoreCase);
-        }
-
-        private void ShrinkDatabase(DatabaseModel database)
-        {
-            string sql = $"DBCC SHRINKDATABASE ({database.Name})";
-            DB.ExecuteNonQuery(sql);
-        }
-
-        private void BackupDatabase(DatabaseModel database)
-        {
-            string sql = @$"
-                BACKUP DATABASE [{database.Name}] 
-                TO DISK = N'{destinationFolder}\{database.Name}.bak' 
-                WITH FORMAT, INIT, NAME = N'Backup de {database.Name}'";
-
-            DB.ExecuteNonQuery(sql);
-        }
-
-        private void CompactDatabase(DatabaseModel database)
-        {
-            string backupFile = @$"{destinationFolder}\{database.Name}.bak";
-            string zipFile = @$"{destinationFolder}\{database.Name}.zip";
-
-            using (var zipToOpen = new FileStream(zipFile, FileMode.Create))
-            {
-                using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
-                {
-                    archive.CreateEntryFromFile(backupFile, Path.GetFileName(backupFile), CompressionLevel.Optimal);
-                }
-            }
-
-            DeleteBackupFile(backupFile);
-        }
-
-        /// <summary>
-        /// Apaga o .bak após a compactação.
-        /// </summary>
-        private void DeleteBackupFile(string backupFile)
-        {
-            if (File.Exists(backupFile))
-                File.Delete(backupFile);
         }
 
         #endregion

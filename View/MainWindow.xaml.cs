@@ -4,8 +4,6 @@ using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
-using System.IO;
-using System.IO.Compression;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -72,14 +70,18 @@ namespace BackupManager.View
             databasesView?.Refresh();
         }
 
-        private void btnBackup_Click(object sender, RoutedEventArgs e)
+        private async void btnBackup_Click(object sender, RoutedEventArgs e)
         {
+            this.IsEnabled = false;
+
             foreach (var database in selectedDatabases)
             {
                 var dbService = new DatabaseService(destinationFolder!, chkShrink.IsChecked == true, chkCompact.IsChecked == true);
 
-                dbService.ProcessDatabaseBackupAsync(database);
+                await dbService.ProcessDatabaseBackupAsync(database);
             }
+
+            this.IsEnabled = true;
         }
 
         #endregion

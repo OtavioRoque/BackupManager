@@ -29,13 +29,9 @@ namespace BackupManager.Helper
             {
                 await Task.Run(() =>
                 {
-                    if (_shrinkDatabase)
-                        ShrinkDatabase(database);
-
+                    ShrinkDatabase(database);
                     BackupDatabase(database);
-
-                    if (_compactDatabase)
-                        CompactDatabase(database);
+                    CompactDatabase(database);
 
                 });
 
@@ -53,6 +49,9 @@ namespace BackupManager.Helper
 
         private void ShrinkDatabase(DatabaseModel database)
         {
+            if (!_shrinkDatabase)
+                return;
+
             string sql = $"DBCC SHRINKDATABASE ({database.Name})";
             DB.ExecuteNonQuery(sql);
         }
@@ -69,6 +68,9 @@ namespace BackupManager.Helper
 
         private void CompactDatabase(DatabaseModel database)
         {
+            if (!_compactDatabase)
+                return;
+
             string backupFile = @$"{_destinationFolder}\{database.Name}.bak";
             string zipFile = @$"{_destinationFolder}\{database.Name}.zip";
 

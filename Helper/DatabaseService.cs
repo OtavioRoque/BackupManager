@@ -20,26 +20,29 @@ namespace BackupManager.Helper
 
         #region Public methods
 
-        public bool ProcessDatabaseBackup(DatabaseModel database)
+        public async Task<bool> ProcessDatabaseBackupAsync(DatabaseModel database)
         {
             if (!DestinationFolderExists())
                 return false;
 
             try
             {
-                if (_shrinkDatabase)
-                    ShrinkDatabase(database);
+                await Task.Run(() =>
+                {
+                    if (_shrinkDatabase)
+                        ShrinkDatabase(database);
 
-                BackupDatabase(database);
+                    BackupDatabase(database);
 
-                if (_compactDatabase)
-                    CompactDatabase(database);
+                    if (_compactDatabase)
+                        CompactDatabase(database);
+
+                });
 
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
                 return false;
             }
         }

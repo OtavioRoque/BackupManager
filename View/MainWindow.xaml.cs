@@ -78,7 +78,7 @@ namespace BackupManager.View
             {
                 var dbService = new DatabaseService(destinationFolder!, chkShrink.IsChecked == true, chkCompact.IsChecked == true);
 
-                dbService.ProcessDatabaseBackup(database);
+                dbService.ProcessDatabaseBackupAsync(database);
             }
         }
 

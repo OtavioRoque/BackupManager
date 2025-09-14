@@ -107,7 +107,6 @@
                         x:Name="chkShrink"
                         Margin="0 0 0 10"
                         Content="Shrink"
-                        IsChecked="True"
                         VerticalContentAlignment="Center"/>
 
                     <CheckBox

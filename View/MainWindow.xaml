@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Parte superior -->
+        <!-- Filtro e datagrid -->
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -74,7 +74,7 @@
             </DataGrid>
         </Grid>
 
-        <!-- Parte inferior -->
+        <!-- Definições backup -->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>

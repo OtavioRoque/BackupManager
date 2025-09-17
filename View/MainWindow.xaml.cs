@@ -79,9 +79,10 @@ namespace BackupManager.View
             {
                 var dbService = new DatabaseService(destinationFolder!, chkShrink.IsChecked == true, chkCompact.IsChecked == true);
 
-                await dbService.ProcessDatabaseBackupAsync(database);
+                await dbService.ProcessDatabaseBackupAsync(database, BackupProgress);
             }
 
+            MessageBox.Show("Backup concluído!");
             this.IsEnabled = true;
         }
 

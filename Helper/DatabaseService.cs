@@ -20,7 +20,7 @@ namespace BackupManager.Helper
 
         #region Public methods
 
-        public async Task<bool> ProcessDatabaseBackupAsync(DatabaseModel database)
+        public async Task<bool> ProcessDatabaseBackupAsync(DatabaseModel database, ProgressModel progress)
         {
             if (!DestinationFolderExists())
                 return false;

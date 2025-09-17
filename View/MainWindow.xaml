@@ -91,7 +91,7 @@
                 FontSize="14"
                 Click="btnSelectDestinationFolder_Click"/>
 
-            <Grid Grid.Row="1" Margin="0 10 0 0">
+            <Grid Grid.Row="1" Margin="0 10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
@@ -131,8 +131,14 @@
         
         <!-- ProgressBar -->
         <ProgressBar
+            x:Name="pbProgress"
             Grid.Row="2"
-            Height="15"
-            Margin="0 10 0 0"/>
+            Height="15"/>
+
+        <TextBlock
+            x:Name="tbProgressStatus"
+            Grid.Row="2"
+            Text="Status backup"
+            HorizontalAlignment="Center"/>
     </Grid>
 </Window>

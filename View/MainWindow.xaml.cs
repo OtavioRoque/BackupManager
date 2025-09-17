@@ -17,6 +17,7 @@ namespace BackupManager.View
         private ICollectionView? databasesView;
 
         public ObservableCollection<DatabaseModel> Databases { get; set; } = new ObservableCollection<DatabaseModel>();
+        public ProgressModel BackupProgress { get; set; } = new ProgressModel();
 
         public MainWindow()
         {

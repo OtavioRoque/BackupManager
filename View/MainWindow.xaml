@@ -132,12 +132,13 @@
         <ProgressBar
             x:Name="pbProgress"
             Grid.Row="2"
-            Height="17"/>
+            Height="17"
+            Value="{Binding BackupProgress.Percentage}"/>
 
         <TextBlock
             x:Name="tbProgressStatus"
             Grid.Row="2"
-            Text="Status Backup"
+            Text="{Binding BackupProgress.StatusText}"
             FontSize="12"
             FontWeight="Bold"
             HorizontalAlignment="Center"/>

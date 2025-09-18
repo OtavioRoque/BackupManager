@@ -29,9 +29,9 @@ namespace BackupManager.Helper
             {
                 await Task.Run(() =>
                 {
-                    ShrinkDatabase(database);
-                    BackupDatabase(database);
-                    CompactDatabase(database);
+                    ShrinkDatabase(database, progress);
+                    BackupDatabase(database, progress);
+                    CompactDatabase(database, progress);
 
                 });
 
@@ -47,17 +47,21 @@ namespace BackupManager.Helper
 
         #region Private methods
 
-        private void ShrinkDatabase(DatabaseModel database)
+        private void ShrinkDatabase(DatabaseModel database, ProgressModel progress)
         {
             if (!_shrinkDatabase)
                 return;
+
+            ReportProgress(progress, 30, $"Shrinking {database.Name}...");
 
             string sql = $"DBCC SHRINKDATABASE ({database.Name})";
             DB.ExecuteNonQuery(sql);
         }
 
-        private void BackupDatabase(DatabaseModel database)
+        private void BackupDatabase(DatabaseModel database, ProgressModel progress)
         {
+            ReportProgress(progress, 70, $"Backing up {database.Name}...");
+
             string sql = @$"
                 BACKUP DATABASE [{database.Name}] 
                 TO DISK = N'{_destinationFolder}\{database.Name}.bak' 
@@ -66,10 +70,12 @@ namespace BackupManager.Helper
             DB.ExecuteNonQuery(sql);
         }
 
-        private void CompactDatabase(DatabaseModel database)
+        private void CompactDatabase(DatabaseModel database, ProgressModel progress)
         {
             if (!_compactDatabase)
                 return;
+
+            ReportProgress(progress, 100, $"Compacting {database.Name}...");
 
             string backupFile = @$"{_destinationFolder}\{database.Name}.bak";
             string zipFile = @$"{_destinationFolder}\{database.Name}.zip";
@@ -95,6 +101,12 @@ namespace BackupManager.Helper
         {
             if (File.Exists(backupFile))
                 File.Delete(backupFile);
+        }
+
+        private void ReportProgress(ProgressModel progress, double percentage, string status)
+        {
+            progress.Percentage = percentage;
+            progress.StatusText = status;
         }
 
         #endregion

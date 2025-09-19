@@ -82,7 +82,7 @@ namespace BackupManager.View
                 await dbService.ProcessDatabaseBackupAsync(database, BackupProgress);
             }
 
-            MessageBox.Show("Backup concluído!");
+            MessageBox.Show("Backup concluído!", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);
             this.IsEnabled = true;
         }
 

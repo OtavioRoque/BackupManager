@@ -1,6 +1,5 @@
 ﻿using BackupManager.Helper;
 using BackupManager.Model;
-using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
@@ -48,14 +47,7 @@ namespace BackupManager.View
 
         private void btnSelectDestinationFolder_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFolderDialog()
-            {
-                Title = "Selecione uma pasta para o backup.",
-                Multiselect = false
-            };
-
-            dialog.ShowDialog();
-            destinationFolder = dialog.FolderName;
+            destinationFolder = FolderService.SelectFolder("Selecione a pasta de destino do backup");
 
             RefreshBackupButtonState();
             UpdateSelectDestinationButtonStyle();

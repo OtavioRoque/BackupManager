@@ -22,7 +22,7 @@ namespace BackupManager.Helper
 
         public async Task<bool> ProcessDatabaseBackupAsync(DatabaseModel database, ProgressModel progress)
         {
-            if (!DestinationFolderExists())
+            if (!FolderService.FolderExists(_destinationFolder))
                 return false;
 
             try
@@ -87,11 +87,6 @@ namespace BackupManager.Helper
             }
 
             DeleteBackupFile(backupFile);
-        }
-
-        private bool DestinationFolderExists()
-        {
-            return Directory.Exists(_destinationFolder);
         }
 
         /// <summary>

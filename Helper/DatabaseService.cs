@@ -44,9 +44,6 @@ namespace BackupManager.Helper
         /// <param name="progress">O objeto para reportar o andamento.</param>
         private async Task<bool> ProcessDatabaseBackupAsync(DatabaseModel database, ProgressModel progress)
         {
-            if (!FolderService.FolderExists(_destinationFolder))
-                return false;
-
             try
             {
                 await Task.Run(() =>

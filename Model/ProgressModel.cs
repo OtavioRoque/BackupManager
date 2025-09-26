@@ -15,5 +15,11 @@ namespace BackupManager.Model
             Percentage = percentage;
             StatusText = status;
         }
+
+        public void Reset()
+        {
+            Percentage = 0;
+            StatusText = string.Empty;
+        }
     }
 }

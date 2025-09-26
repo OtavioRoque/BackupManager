@@ -84,6 +84,7 @@ namespace BackupManager.View
             }
             finally
             {
+                BackupProgress.Reset();
                 this.IsEnabled = true;
             }
 

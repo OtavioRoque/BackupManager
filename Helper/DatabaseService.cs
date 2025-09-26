@@ -33,12 +33,16 @@ namespace BackupManager.Helper
                 await ProcessDatabaseBackupAsync(database, progress);
         }
 
+        #endregion
+
+        #region Private methods
+
         /// <summary>
         /// Executa de forma assíncrona o processo de backup do banco de dados, fazendo shrink e compactação se configurado.
         /// </summary>
         /// <param name="database">O banco de dados a ser processado.</param>
         /// <param name="progress">O objeto para reportar o andamento.</param>
-        public async Task<bool> ProcessDatabaseBackupAsync(DatabaseModel database, ProgressModel progress)
+        private async Task<bool> ProcessDatabaseBackupAsync(DatabaseModel database, ProgressModel progress)
         {
             if (!FolderService.FolderExists(_destinationFolder))
                 return false;
@@ -60,10 +64,6 @@ namespace BackupManager.Helper
                 return false;
             }
         }
-
-        #endregion
-
-        #region Private methods
 
         private void ShrinkDatabase(DatabaseModel database, ProgressModel progress)
         {

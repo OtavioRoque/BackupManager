@@ -23,6 +23,9 @@ namespace BackupManager.Helper
         /// <summary>
         /// Executa de forma assíncrona o processo de backup para uma lista de bancos de dados.
         /// </summary>
+        /// <remarks>
+        /// Chamar esse método dentro de um try/catch.
+        /// </remarks>
         /// <param name="databases">A lista de bancos de dados a serem processados.</param>
         /// <param name="progress">O objeto para reportar o andamento.</param>
         public async Task ProcessListDatabasesBackupAsync(List<DatabaseModel> databases, ProgressModel progress)
@@ -44,22 +47,15 @@ namespace BackupManager.Helper
         /// <param name="progress">O objeto para reportar o andamento.</param>
         private async Task<bool> ProcessDatabaseBackupAsync(DatabaseModel database, ProgressModel progress)
         {
-            try
+            await Task.Run(() =>
             {
-                await Task.Run(() =>
-                {
-                    ShrinkDatabase(database, progress);
-                    BackupDatabase(database, progress);
-                    CompactDatabase(database, progress);
+                ShrinkDatabase(database, progress);
+                BackupDatabase(database, progress);
+                CompactDatabase(database, progress);
 
-                });
+            });
 
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
 
         private void ShrinkDatabase(DatabaseModel database, ProgressModel progress)

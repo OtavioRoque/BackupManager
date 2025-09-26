@@ -27,8 +27,7 @@ namespace BackupManager.Helper
         /// <param name="progress">O objeto para reportar o andamento.</param>
         public async Task ProcessListDatabasesBackupAsync(List<DatabaseModel> databases, ProgressModel progress)
         {
-            if (!FolderService.FolderExists(_destinationFolder))
-                throw new DirectoryNotFoundException();
+            ValidadeDestinationFolder();
 
             foreach (var database in databases)
                 await ProcessDatabaseBackupAsync(database, progress);
@@ -115,6 +114,15 @@ namespace BackupManager.Helper
         {
             if (File.Exists(backupFile))
                 File.Delete(backupFile);
+        }
+
+        private void ValidadeDestinationFolder()
+        {
+            if (!FolderService.FolderExists(_destinationFolder))
+            {
+                string message = $"A pasta destino:\n{_destinationFolder}\nnão existe ou não foi encontrada.";
+                throw new DirectoryNotFoundException(message);
+            }
         }
 
         #endregion

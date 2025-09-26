@@ -59,7 +59,7 @@ namespace BackupManager.Helper
             if (!_shrinkDatabase)
                 return;
 
-            progress.ReportProgress(30, $"Shrinking {database.Name}...");
+            progress.Report(30, $"Shrinking {database.Name}...");
 
             string sql = $"DBCC SHRINKDATABASE ({database.Name})";
             DB.ExecuteNonQuery(sql);
@@ -67,7 +67,7 @@ namespace BackupManager.Helper
 
         private void BackupDatabase(DatabaseModel database, ProgressModel progress)
         {
-            progress.ReportProgress(70, $"Backing up {database.Name}...");
+            progress.Report(70, $"Backing up {database.Name}...");
 
             string sql = @$"
                 BACKUP DATABASE [{database.Name}] 
@@ -82,7 +82,7 @@ namespace BackupManager.Helper
             if (!_compactDatabase)
                 return;
 
-            progress.ReportProgress(100, $"Compacting {database.Name}...");
+            progress.Report(100, $"Compacting {database.Name}...");
 
             string backupFile = @$"{_destinationFolder}\{database.Name}.bak";
             string zipFile = @$"{_destinationFolder}\{database.Name}.zip";

@@ -10,7 +10,7 @@ namespace BackupManager.Model
         [ObservableProperty]
         private string _statusText = string.Empty;
 
-        public void ReportProgress(double percentage, string status)
+        public void Report(double percentage, string status)
         {
             Percentage = percentage;
             StatusText = status;

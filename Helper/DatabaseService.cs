@@ -5,6 +5,9 @@ using System.Windows;
 
 namespace BackupManager.Helper
 {
+    /// <summary>
+    /// Contém métodos para realizar operações de SHRINK, BACKUP e COMPACTAÇÃO em bancos de dados.
+    /// </summary>
     public class DatabaseService
     {
         private readonly string _destinationFolder;

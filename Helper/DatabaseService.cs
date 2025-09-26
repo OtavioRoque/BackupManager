@@ -28,7 +28,7 @@ namespace BackupManager.Helper
         /// </remarks>
         /// <param name="databases">A lista de bancos de dados a serem processados.</param>
         /// <param name="progress">O objeto para reportar o andamento.</param>
-        public async Task ProcessListDatabasesBackupAsync(List<DatabaseModel> databases, ProgressModel progress)
+        public async Task ProcessListDatabasesBackupAsync(IEnumerable<DatabaseModel> databases, ProgressModel progress)
         {
             ValidadeDestinationFolder();
 

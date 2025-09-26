@@ -21,6 +21,20 @@ namespace BackupManager.Helper
         #region Public methods
 
         /// <summary>
+        /// Executa de forma assíncrona o processo de backup para uma lista de bancos de dados.
+        /// </summary>
+        /// <param name="databases">A lista de bancos de dados a serem processados.</param>
+        /// <param name="progress">O objeto para reportar o andamento.</param>
+        public async Task ProcessListDatabasesBackupAsync(List<DatabaseModel> databases, ProgressModel progress)
+        {
+            if (!FolderService.FolderExists(_destinationFolder))
+                throw new DirectoryNotFoundException();
+
+            foreach (var database in databases)
+                await ProcessDatabaseBackupAsync(database, progress);
+        }
+
+        /// <summary>
         /// Executa de forma assíncrona o processo de backup do banco de dados, fazendo shrink e compactação se configurado.
         /// </summary>
         /// <param name="database">O banco de dados a ser processado.</param>

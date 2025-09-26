@@ -65,17 +65,29 @@ namespace BackupManager.View
 
         private async void btnBackup_Click(object sender, RoutedEventArgs e)
         {
-            this.IsEnabled = false;
-
-            foreach (var database in selectedDatabases)
+            try
             {
-                var dbService = new DatabaseService(destinationFolder!, chkShrink.IsChecked == true, chkCompact.IsChecked == true);
+                this.IsEnabled = false;
 
-                await dbService.ProcessDatabaseBackupAsync(database, BackupProgress);
+                var dbService = new DatabaseService(
+                    destinationFolder!,
+                    chkShrink.IsChecked == true,
+                    chkCompact.IsChecked == true
+                );
+
+                await dbService.ProcessListDatabasesBackupAsync(selectedDatabases, BackupProgress);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            finally
+            {
+                this.IsEnabled = true;
             }
 
-            MessageBox.Show("Backup concluído!", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);
-            this.IsEnabled = true;
+            MessageBox.Show("Backup concluído.", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         #endregion

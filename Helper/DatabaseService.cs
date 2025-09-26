@@ -40,11 +40,6 @@ namespace BackupManager.Helper
 
         #region Private methods
 
-        /// <summary>
-        /// Executa de forma assíncrona o processo de backup do banco de dados, fazendo shrink e compactação se configurado.
-        /// </summary>
-        /// <param name="database">O banco de dados a ser processado.</param>
-        /// <param name="progress">O objeto para reportar o andamento.</param>
         private async Task ProcessDatabaseBackupAsync(DatabaseModel database, ProgressModel progress)
         {
             await Task.Run(() =>
@@ -98,9 +93,6 @@ namespace BackupManager.Helper
             DeleteBackupFile(backupFile);
         }
 
-        /// <summary>
-        /// Apaga o .bak após a compactação pois não vai ser mais necessário.
-        /// </summary>
         private void DeleteBackupFile(string backupFile)
         {
             if (File.Exists(backupFile))

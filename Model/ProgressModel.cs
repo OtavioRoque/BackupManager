@@ -10,6 +10,8 @@ namespace BackupManager.Model
         [ObservableProperty]
         private string _statusText = string.Empty;
 
+        #region Public methods
+
         /// <summary>
         /// Define um valor e status específico para a progress bar.
         /// </summary>
@@ -27,5 +29,7 @@ namespace BackupManager.Model
             Percentage = 0;
             StatusText = string.Empty;
         }
+
+        #endregion
     }
 }

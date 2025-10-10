@@ -98,7 +98,7 @@ namespace BackupManager.View
         private void LoadDatabases()
         {
             string sql = "SELECT name FROM sys.databases";
-            var dtDatabases = DB.FillDataTable(sql);
+            var dtDatabases = SQL.FillDataTable(sql);
 
             foreach (DataRow dr in dtDatabases.Rows)
             {

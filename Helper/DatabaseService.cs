@@ -62,7 +62,7 @@ namespace BackupManager.Helper
             progress.Report(30, $"Shrinking {database.Name}...");
 
             string sql = $"DBCC SHRINKDATABASE ({database.Name})";
-            DB.ExecuteNonQuery(sql);
+            SQL.ExecuteNonQuery(sql);
         }
 
         private void BackupDatabase(DatabaseModel database, ProgressModel progress)
@@ -74,7 +74,7 @@ namespace BackupManager.Helper
                 TO DISK = N'{_destinationFolder}\{database.Name}.bak' 
                 WITH FORMAT, INIT, NAME = N'Backup de {database.Name}'";
 
-            DB.ExecuteNonQuery(sql);
+            SQL.ExecuteNonQuery(sql);
         }
 
         private void CompactDatabase(DatabaseModel database, ProgressModel progress)

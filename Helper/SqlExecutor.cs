@@ -14,7 +14,7 @@ namespace SqlHelper.Utils
     /// <remarks>
     /// Usar com o alias DB.NomeMetodo().
     /// </remarks>
-    public static class DatabaseAccess
+    public static class SqlExecutor
     {
         private static readonly string _connectionString = ConfigLoader.ObterConnectionString("ConexaoLocal");
 

@@ -1,1 +1,1 @@
-﻿global using DB = SqlHelper.Utils.DatabaseAccess;
+﻿global using SQL = SqlHelper.Utils.SqlExecutor;

@@ -14,11 +14,11 @@ namespace BackupManager.Helper
         private readonly bool _shrinkDatabase;
         private readonly bool _compactDatabase;
 
-        public DatabaseService(string destinationFolder, bool shrinkDatabase, bool backupDatabase)
+        public DatabaseService(string destinationFolder, bool shrinkDatabase, bool compactDatabase)
         {
             _destinationFolder = destinationFolder;
             _shrinkDatabase = shrinkDatabase;
-            _compactDatabase = backupDatabase;
+            _compactDatabase = compactDatabase;
         }
 
         #region Public methods

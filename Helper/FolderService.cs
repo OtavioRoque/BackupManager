@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
-using System.Windows;
 
 namespace BackupManager.Helper
 {
@@ -50,19 +49,12 @@ namespace BackupManager.Helper
             if (!FolderExists(folderPath))
                 return;
 
-            try
+            Process.Start(new ProcessStartInfo
             {
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = folderPath,
-                    UseShellExecute = true,
-                    Verb = "open"
-                });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                FileName = folderPath,
+                UseShellExecute = true,
+                Verb = "open"
+            });
         }
     }
 }

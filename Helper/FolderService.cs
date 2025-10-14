@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System.Diagnostics;
 using System.IO;
 
 namespace BackupManager.Helper
@@ -37,6 +38,23 @@ namespace BackupManager.Helper
         public static bool FolderExists(string folderPath)
         {
             return Directory.Exists(folderPath);
+        }
+
+        /// <summary>
+        /// Abre uma pasta no Explorer do Windows.
+        /// </summary>
+        /// <param name="folderPath">Caminho da pasta que vai ser aberta.</param>
+        public static void OpenFolder(string folderPath)
+        {
+            if (!FolderExists(folderPath))
+                return;
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = folderPath,
+                UseShellExecute = true,
+                Verb = "open"
+            });
         }
     }
 }

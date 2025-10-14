@@ -12,11 +12,11 @@ namespace BackupManager.View
     public partial class MainWindow : Window
     {
         private string? destinationFolder;
-        private List<DatabaseModel> selectedDatabases = new List<DatabaseModel>();
+        private List<DatabaseModel> selectedDatabases = new();
         private ICollectionView? databasesView;
 
-        public ObservableCollection<DatabaseModel> Databases { get; set; } = new ObservableCollection<DatabaseModel>();
-        public ProgressModel BackupProgress { get; set; } = new ProgressModel();
+        public ObservableCollection<DatabaseModel> Databases { get; set; } = new();
+        public ProgressModel BackupProgress { get; set; } = new();
 
         public MainWindow()
         {

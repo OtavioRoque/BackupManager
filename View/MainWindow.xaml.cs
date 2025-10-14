@@ -11,7 +11,7 @@ namespace BackupManager.View
 {
     public partial class MainWindow : Window
     {
-        private string? destinationFolder;
+        private string _destinationFolder = string.Empty;
         private List<DatabaseModel> selectedDatabases = new();
         private ICollectionView? databasesView;
 
@@ -47,7 +47,7 @@ namespace BackupManager.View
 
         private void btnSelectDestinationFolder_Click(object sender, RoutedEventArgs e)
         {
-            destinationFolder = FolderService.SelectFolder("Selecione a pasta de destino do backup");
+            _destinationFolder = FolderService.SelectFolder("Selecione a pasta de destino do backup");
 
             RefreshBackupButtonState();
             UpdateSelectDestinationButtonStyle();
@@ -70,7 +70,7 @@ namespace BackupManager.View
                 this.IsEnabled = false;
 
                 var dbService = new DatabaseService(
-                    destinationFolder!,
+                    _destinationFolder,
                     chkShrink.IsChecked == true,
                     chkCompact.IsChecked == true
                 );
@@ -109,19 +109,19 @@ namespace BackupManager.View
 
         private void RefreshBackupButtonState()
         {
-            btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(destinationFolder) && selectedDatabases.Count > 0;
+            btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(_destinationFolder) && selectedDatabases.Count > 0;
         }
 
         private void UpdateSelectDestinationButtonStyle()
         {
-            if (string.IsNullOrWhiteSpace(destinationFolder))
+            if (string.IsNullOrWhiteSpace(_destinationFolder))
             {
                 btnSelectDestinationFolder.Content = "Selecionar pasta de destino";
                 btnSelectDestinationFolder.Foreground = Brushes.Tomato;
             }
             else
             {
-                btnSelectDestinationFolder.Content = destinationFolder;
+                btnSelectDestinationFolder.Content = _destinationFolder;
                 btnSelectDestinationFolder.Foreground = Brushes.Green;
             }
         }

@@ -67,7 +67,7 @@ namespace BackupManager.View
         {
             try
             {
-                this.IsEnabled = false;
+                IsEnabled = false;
 
                 var dbService = new DatabaseService(
                     _destinationFolder,
@@ -85,7 +85,7 @@ namespace BackupManager.View
             finally
             {
                 BackupProgress.Reset();
-                this.IsEnabled = true;
+                IsEnabled = true;
             }
 
             MessageBox.Show("Backup concluído.", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);

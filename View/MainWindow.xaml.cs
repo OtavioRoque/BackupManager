@@ -12,8 +12,8 @@ namespace BackupManager.View
     public partial class MainWindow : Window
     {
         private string _destinationFolder = string.Empty;
-        private List<DatabaseModel> selectedDatabases = new();
-        private ICollectionView? databasesView;
+        private List<DatabaseModel> _selectedDatabases = new();
+        private ICollectionView? _databasesView;
 
         public ObservableCollection<DatabaseModel> Databases { get; set; } = new();
         public ProgressModel BackupProgress { get; set; } = new();
@@ -33,8 +33,8 @@ namespace BackupManager.View
 
             txtDatabaseFilter.Focus();
 
-            databasesView = CollectionViewSource.GetDefaultView(Databases);
-            databasesView.Filter = FilterDatabases;
+            _databasesView = CollectionViewSource.GetDefaultView(Databases);
+            _databasesView.Filter = FilterDatabases;
         }
 
         private void dgDatabases_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -60,7 +60,7 @@ namespace BackupManager.View
             else
                 tbPlaceholder.Visibility = Visibility.Visible;
 
-            databasesView?.Refresh();
+            _databasesView?.Refresh();
         }
 
         private async void btnBackup_Click(object sender, RoutedEventArgs e)
@@ -75,7 +75,7 @@ namespace BackupManager.View
                     chkCompact.IsChecked == true
                 );
 
-                await dbService.ProcessListDatabasesBackupAsync(selectedDatabases, BackupProgress);
+                await dbService.ProcessListDatabasesBackupAsync(_selectedDatabases, BackupProgress);
             }
             catch (Exception ex)
             {
@@ -109,7 +109,7 @@ namespace BackupManager.View
 
         private void RefreshBackupButtonState()
         {
-            btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(_destinationFolder) && selectedDatabases.Count > 0;
+            btnBackup.IsEnabled = !string.IsNullOrWhiteSpace(_destinationFolder) && _selectedDatabases.Count > 0;
         }
 
         private void UpdateSelectDestinationButtonStyle()
@@ -131,9 +131,9 @@ namespace BackupManager.View
             database.IsChecked = !database.IsChecked;
 
             if (database.IsChecked)
-                selectedDatabases.Add(database);
+                _selectedDatabases.Add(database);
             else
-                selectedDatabases.Remove(database);
+                _selectedDatabases.Remove(database);
 
             dgDatabases.SelectedItem = null;
             RefreshBackupButtonState();

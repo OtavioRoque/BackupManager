@@ -76,6 +76,8 @@ namespace BackupManager.View
                 );
 
                 await dbService.ProcessListDatabasesBackupAsync(_selectedDatabases, BackupProgress);
+
+                FinishBackupSuccess();
             }
             catch (Exception ex)
             {
@@ -87,8 +89,6 @@ namespace BackupManager.View
                 BackupProgress.Reset();
                 IsEnabled = true;
             }
-
-            MessageBox.Show("Backup concluído.", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         #endregion
@@ -148,6 +148,13 @@ namespace BackupManager.View
                 return true;
 
             return database.Name.Contains(txtDatabaseFilter.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void FinishBackupSuccess()
+        {
+            MessageBox.Show("Backup concluído.", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            FolderService.OpenFolder(_destinationFolder);
         }
 
         #endregion

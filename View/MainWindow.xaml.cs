@@ -153,8 +153,9 @@ namespace BackupManager.View
         private void FinishBackupSuccess()
         {
             MessageBox.Show("Backup concluído.", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);
-
             FolderService.OpenFolder(_destinationFolder);
+
+            Close();
         }
 
         #endregion

@@ -33,7 +33,7 @@ namespace BackupManager.Helper
         /// <param name="progress">O objeto para reportar o andamento.</param>
         public async Task ProcessListDatabasesBackupAsync(IEnumerable<DatabaseModel> databases, ProgressModel progress)
         {
-            ValidadeDestinationFolder();
+            ValidateDestinationFolder();
 
             foreach (var database in databases)
                 await ProcessDatabaseBackupAsync(database, progress);
@@ -102,7 +102,7 @@ namespace BackupManager.Helper
                 File.Delete(backupFile);
         }
 
-        private void ValidadeDestinationFolder()
+        private void ValidateDestinationFolder()
         {
             if (!FolderService.FolderExists(_destinationFolder))
             {

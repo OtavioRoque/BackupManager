@@ -92,13 +92,7 @@ namespace BackupManager.Helper
                 archive.CreateEntryFromFile(backupFile, Path.GetFileName(backupFile), CompressionLevel.Optimal);
             }
 
-            DeleteBackupFile(backupFile);
-        }
-
-        private void DeleteBackupFile(string backupFile)
-        {
-            if (File.Exists(backupFile))
-                File.Delete(backupFile);
+            File.Delete(backupFile);
         }
 
         private void ValidateDestinationFolder()

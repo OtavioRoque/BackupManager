@@ -16,7 +16,7 @@ namespace BackupManager.Helper
     /// </remarks>
     public static class SqlExecutor
     {
-        private static readonly string _connectionString = ConfigLoader.ObterConnectionString("ConexaoLocal");
+        private static readonly string _connectionString = ConfigLoader.GetConnectionString();
 
         /// <summary>
         /// Ler uma tabela do banco de dados usando uma consulta SQL.

@@ -1,11 +1,11 @@
 ﻿using System.Data;
-using SqlHelper.Config;
+using BackupManager.Config;
 using Microsoft.Data.SqlClient;
 
 #pragma warning disable CS8601
 #pragma warning disable CS8603
 
-namespace SqlHelper.Utils
+namespace BackupManager.Helper
 {
     /// <summary>
     /// Contém métodos utilitários para acessar o banco de dados.

@@ -1,1 +1,1 @@
-﻿global using SQL = SqlHelper.Utils.SqlExecutor;
+﻿global using SQL = BackupManager.Helper.SqlExecutor;

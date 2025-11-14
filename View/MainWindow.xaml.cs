@@ -37,7 +37,7 @@ namespace BackupManager.View
             _databasesView.Filter = FilterDatabases;
         }
 
-        private void dgDatabases_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DgDatabases_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (dgDatabases.SelectedItem is not DatabaseModel database)
                 return;
@@ -45,7 +45,7 @@ namespace BackupManager.View
             SelectDatabase(database);
         }
 
-        private void btnSelectDestinationFolder_Click(object sender, RoutedEventArgs e)
+        private void BtnSelectDestinationFolder_Click(object sender, RoutedEventArgs e)
         {
             _destinationFolder = FolderService.SelectFolder("Selecione a pasta de destino do backup");
 
@@ -53,7 +53,7 @@ namespace BackupManager.View
             UpdateSelectDestinationButtonStyle();
         }
 
-        private void txtDatabaseFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void TxtDatabaseFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtDatabaseFilter.Text))
                 tbPlaceholder.Visibility = Visibility.Hidden;
@@ -63,7 +63,7 @@ namespace BackupManager.View
             _databasesView?.Refresh();
         }
 
-        private async void btnBackup_Click(object sender, RoutedEventArgs e)
+        private async void BtnBackup_Click(object sender, RoutedEventArgs e)
         {
             try
             {

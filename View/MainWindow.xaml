@@ -36,7 +36,7 @@
                 Height="28"
                 Background="Transparent"
                 VerticalContentAlignment="Center"
-                TextChanged="txtDatabaseFilter_TextChanged"/>
+                TextChanged="TxtDatabaseFilter_TextChanged"/>
 
             <DataGrid
                 x:Name="dgDatabases"
@@ -47,7 +47,7 @@
                 IsReadOnly="True"
                 ItemsSource="{Binding Databases}"
                 HeadersVisibility="Column"
-                MouseLeftButtonUp="dgDatabases_MouseLeftButtonUp">
+                MouseLeftButtonUp="DgDatabases_MouseLeftButtonUp">
 
                 <DataGrid.Resources>
                     <Style TargetType="DataGridRow">
@@ -88,7 +88,7 @@
                 BorderThickness="0"
                 Foreground="Tomato"
                 FontWeight="Bold"
-                Click="btnSelectDestinationFolder_Click"/>
+                Click="BtnSelectDestinationFolder_Click"/>
 
             <Grid Grid.Row="1" Margin="0 10">
                 <Grid.ColumnDefinitions>
@@ -124,7 +124,7 @@
                     Width="80"
                     HorizontalAlignment="Right"
                     Margin="20 0 0 0"
-                    Click="btnBackup_Click"/>
+                    Click="BtnBackup_Click"/>
             </Grid>
         </Grid>
         

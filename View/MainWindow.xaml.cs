@@ -12,7 +12,7 @@ namespace BackupManager.View
     public partial class MainWindow : Window
     {
         private string _destinationFolder = string.Empty;
-        private List<DatabaseModel> _selectedDatabases = new();
+        private readonly List<DatabaseModel> _selectedDatabases = new();
         private ICollectionView? _databasesView;
 
         public ObservableCollection<DatabaseModel> Databases { get; set; } = new();

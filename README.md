@@ -1,16 +1,17 @@
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![Platform](https://img.shields.io/badge/platform-Windows-blue)
+![Tech](https://img.shields.io/badge/language-C%23-blue)
+![UI](https://img.shields.io/badge/UI-WPF-lightblue)
+![Database](https://img.shields.io/badge/Database-SQL_Server-red)
+
 # Backup Manager
 
-**Backup Manager** é uma ferramenta desenvolvida por mim na empresa **Transis Software**.
-O objetivo é simplificar o processo de fazer shrink, backup e compactar um banco de dados SQL Server, tudo com um único click.
+**Backup Manager** is a tool developed by me at **Transis Software**.
+The goal is to simplify the process of shrinking, backing up, and compressing a SQL Server database, all with a single click.
 
-## 🛠️ Tecnologias utilizadas
-- C#.
-- WPF.
-- SQL Server.
-
-## 📁 Pastas
-- **Properties:** Informações do AssemblyInfo.
-- **Config** Definições de connection string.
-- **Helper** Classes estáticas com métodos auxiliares.
-- **Model** Entidades do programa.
-- **View:** Janelas da interface gráfica.
+## 📁 Folders
+- **Properties:** AssemblyInfo information.
+- **Config** Connection string definitions.
+- **Helper** Static classes with helper methods.
+- **Model** Application entities.
+- **View:** Windows of the graphical interface.

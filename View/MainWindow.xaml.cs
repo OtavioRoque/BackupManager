@@ -47,7 +47,7 @@ namespace BackupManager.View
 
         private void BtnSelectDestinationFolder_Click(object sender, RoutedEventArgs e)
         {
-            _destinationFolder = FolderService.SelectFolder("Selecione a pasta de destino do backup");
+            _destinationFolder = FolderService.SelectFolder("Select the backup destination folder");
 
             RefreshBackupButtonState();
             UpdateSelectDestinationButtonStyle();
@@ -116,7 +116,7 @@ namespace BackupManager.View
         {
             if (string.IsNullOrWhiteSpace(_destinationFolder))
             {
-                btnSelectDestinationFolder.Content = "Selecionar pasta de destino";
+                btnSelectDestinationFolder.Content = "Select destination folder";
                 btnSelectDestinationFolder.Foreground = Brushes.Tomato;
             }
             else
@@ -152,7 +152,7 @@ namespace BackupManager.View
 
         private void FinishBackupSuccess()
         {
-            MessageBox.Show("Backup concluído.", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Backup completed.", "Backup Manager", MessageBoxButton.OK, MessageBoxImage.Information);
             FolderService.OpenFolder(_destinationFolder);
 
             Close();

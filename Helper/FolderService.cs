@@ -5,17 +5,21 @@ using System.IO;
 namespace BackupManager.Helper
 {
     /// <summary>
-    /// Contém métodos para operações relacionadas a pastas.
+    /// Contains methods for folder-related operations.
     /// </summary>
     public static class FolderService
     {
         /// <summary>
-        /// Mostra uma caixa de diálogo para o usuário selecionar uma pasta.
+        /// Displays a dialog box for the user to select a folder.
         /// </summary>
+        /// 
+        /// <param name="title">
+        /// The dialog title.
+        /// </param>
+        /// 
         /// <returns>
-        /// O caminho da pasta selecionada ou null se o usuário cancelar.
+        /// The selected folder path, or null if the user cancels.
         /// </returns>
-        /// <param name="title">O título da caixa de diálogo.</param>
         public static string SelectFolder(string title)
         {
             var dialog = new OpenFolderDialog()
@@ -29,21 +33,28 @@ namespace BackupManager.Helper
         }
 
         /// <summary>
-        /// Verifica se uma pasta existe.
+        /// Checks whether a folder exists.
         /// </summary>
+        /// 
+        /// <param name="folderPath">
+        /// The path of the folder to check.
+        /// </param>
+        /// 
         /// <returns>
-        /// True se a pasta existir, false caso contrário.
+        /// True if the folder exists; otherwise, false.
         /// </returns>
-        /// <param name="folderPath">O caminho da pasta a ser verificada.</param>
         public static bool FolderExists(string folderPath)
         {
             return Directory.Exists(folderPath);
         }
 
         /// <summary>
-        /// Abre uma pasta no Explorer do Windows.
+        /// Opens a folder in Windows Explorer.
         /// </summary>
-        /// <param name="folderPath">Caminho da pasta que vai ser aberta.</param>
+        /// 
+        /// <param name="folderPath">
+        /// The path of the folder to open.
+        /// </param>
         public static void OpenFolder(string folderPath)
         {
             if (!FolderExists(folderPath))

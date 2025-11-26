@@ -2,6 +2,9 @@
 
 namespace BackupManager.Model
 {
+    /// <summary>
+    /// Represents the current progress state, including percentage and status text, and provides methods to update or reset these values.
+    /// </summary>
     public partial class ProgressModel : ObservableObject
     {
         [ObservableProperty]
@@ -13,7 +16,7 @@ namespace BackupManager.Model
         #region Public methods
 
         /// <summary>
-        /// Define um valor e status específico para a progress bar.
+        /// Sets a specific value and status for the progress bar.
         /// </summary>
         public void Report(double percentage, string status)
         {
@@ -22,7 +25,7 @@ namespace BackupManager.Model
         }
 
         /// <summary>
-        /// Zera o valor e o status da progress bar.
+        /// Resets the progress bar value and status.
         /// </summary>
         public void Reset()
         {

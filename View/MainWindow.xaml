@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Filtro e datagrid -->
+        <!-- Filter and Datagrid -->
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -24,7 +24,7 @@
 
             <TextBlock
                 x:Name="tbPlaceholder"
-                Text="Filtrar databases..."
+                Text="Filter databases..."
                 VerticalAlignment="Center"
                 Padding="5"
                 Foreground="Gray"
@@ -67,7 +67,7 @@
                         Binding="{Binding IsChecked}"/>
 
                     <DataGridTextColumn
-                        Header="Banco"
+                        Header="Database"
                         Width="5*"
                         Binding="{Binding Name}"/>
                 </DataGrid.Columns>
@@ -83,7 +83,7 @@
 
             <Button
                 x:Name="btnSelectDestinationFolder"
-                Content="Selecionar pasta destino"
+                Content="Select destination folder"
                 Background="Transparent"
                 BorderThickness="0"
                 Foreground="Tomato"

@@ -8,24 +8,26 @@ using Microsoft.Data.SqlClient;
 namespace BackupManager.Helper
 {
     /// <summary>
-    /// Contém métodos utilitários para acessar o banco de dados.
-    /// São úteis pra não ter que abrir uma SqlConnection manualmente.
+    /// Contains utility methods for accessing the database, helping you avoid manually creating a SqlConnection.
     /// </summary>
+    /// 
     /// <remarks>
-    /// Usar com o alias SQL.NomeMetodo().
+    /// Use with the SQL.MethodName() alias.
     /// </remarks>
     public static class SqlExecutor
     {
         private static readonly string _connectionString = ConfigLoader.GetConnectionString();
 
         /// <summary>
-        /// Ler uma tabela do banco de dados usando uma consulta SQL.
+        /// Reads a database table using an SQL query.
         /// </summary>
-        /// <remarks>
-        /// Usar quando precisar fazer Bindings dos dados lidos.
-        /// </remarks>
+        /// 
+        /// <param name="sql">
+        /// The SQL query to be executed.
+        /// </param>
+        /// 
         /// <returns>
-        /// Um DataTable contendo os resultados da consulta SQL.
+        /// A DataTable containing the query results.
         /// </returns>
         public static DataTable FillDataTable(string sql)
         {
@@ -46,10 +48,15 @@ namespace BackupManager.Helper
         }
 
         /// <summary>
-        /// Executar comandos SQL de INSERT, DELETE, UPDATE, etc.
+        /// Executes a SQL command such as INSERT, UPDATE, DELETE, or any statement that does not return a result set.
         /// </summary>
+        /// 
+        /// <param name="sql">
+        /// The SQL command to execute.
+        /// </param>
+        /// 
         /// <returns>
-        /// 1 se o comando afetou linhas, 0 se não afetou nenhuma linha.
+        /// The number of rows affected by the command.
         /// </returns>
         public static int ExecuteNonQuery(string sql)
         {
@@ -71,8 +78,8 @@ namespace BackupManager.Helper
 
         private static Exception ThrowSqlCommandException(string comandoSql, Exception exception)
         {
-            string mensagem = $"Erro ao executar comando SQL: {comandoSql}. Detalhes: {exception.Message}";
-            return new Exception(mensagem, exception);
+            string message = $"Error executing SQL command: {comandoSql}. Details: {exception.Message}";
+            return new Exception(message, exception);
         }
     }
 }

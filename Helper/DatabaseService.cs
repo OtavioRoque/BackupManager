@@ -5,7 +5,7 @@ using System.IO.Compression;
 namespace BackupManager.Helper
 {
     /// <summary>
-    /// Contém métodos para realizar operações de SHRINK, BACKUP e COMPACTAÇÃO em bancos de dados.
+    /// Provides methods to perform SHRINK, BACKUP, and COMPRESSION operations on SQL Server databases.
     /// </summary>
     public class DatabaseService
     {
@@ -23,13 +23,20 @@ namespace BackupManager.Helper
         #region Public methods
 
         /// <summary>
-        /// Executa de forma assíncrona o processo de backup para uma lista de bancos de dados.
+        /// Asynchronously executes the backup process for a list of databases.
         /// </summary>
+        /// 
         /// <remarks>
-        /// Chamar esse método dentro de um try/catch.
+        /// This method should be invoked inside a try/catch block.
         /// </remarks>
-        /// <param name="databases">A lista de bancos de dados a serem processados.</param>
-        /// <param name="progress">O objeto para reportar o andamento.</param>
+        /// 
+        /// <param name="databases">
+        /// The list of databases to be processed.
+        /// </param>
+        /// 
+        /// <param name="progress">
+        /// The progress reporter instance.
+        /// </param>
         public async Task ProcessListDatabasesBackupAsync(IEnumerable<DatabaseModel> databases, ProgressModel progress)
         {
             ValidateDestinationFolder();
@@ -99,7 +106,7 @@ namespace BackupManager.Helper
         {
             if (!FolderService.FolderExists(_destinationFolder))
             {
-                string message = $"A pasta destino:\n{_destinationFolder}\nnão existe ou não foi encontrada.";
+                string message = $"The destination folder:\n{_destinationFolder}\ndoes not exist or could not be found.";
                 throw new DirectoryNotFoundException(message);
             }
         }
